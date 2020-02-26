@@ -1,0 +1,30 @@
+{
+  "name": "luui-smallprogram",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp --gulpfile build/build-dev.js",
+    "build": "gulp --gulpfile build/build-prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiaolu108/luui-smallprogram.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qiaolu108/luui-smallprogram/issues"
+  },
+  "homepage": "https://github.com/qiaolu108/luui-smallprogram#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-eslint": "^6.0.0",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^2.0.0",
+    "less": "^3.11.1"
+  }
+}
