@@ -37,6 +37,8 @@ npm run dev
 ```
 然后，将 `examples` 目录在微信开发者工具中打开即可。
 
+
+### 打包生产版本
 ```shell
 # 打包生产版本
 npm run build
