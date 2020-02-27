@@ -2,6 +2,12 @@ const { task, src, dest, watch, series } = require('gulp')
 const less = require('gulp-less')
 const cssmin = require('gulp-clean-css')
 const rename = require('gulp-rename')
+const clean = require('gulp-clean')
+
+task('clean', () => {
+  return src('../dist/**/*', {read: false})
+    .pipe(clean({force: true}))
+})
 
 task('compile-css', () => {
   return src(['../src/**/*.less', '!../src/style/**'],{nodir: true})
@@ -28,4 +34,4 @@ task('compile-wxml', () => {
     .pipe(dest('../dist/'));
 })
 
-task('default', series('compile-css', 'compile-js', 'compile-json', 'compile-wxml'))
+task('default', series('clean', 'compile-css', 'compile-js', 'compile-json', 'compile-wxml'))

@@ -16,5 +16,6 @@
   <view class="title">巧鹿小程序组件库</view>
   <view class="list">
     <text class="items" bindtap="toButtonPage">button组件</text>
+    <text class="items" bindtap="toButtonIcon">Icon组件</text>
   </view>
 </view>

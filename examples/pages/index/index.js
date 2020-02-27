@@ -21,6 +21,12 @@ Page({
       url: '../button/index'
     })
   },
+  // 跳转到icon 
+  toButtonIcon () {
+    wx.navigateTo({
+      url: '../icon/index'
+    })
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
