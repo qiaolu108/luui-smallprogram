@@ -1,3 +1,4 @@
 <view class="container">
   <l-button></l-button>
+  <l-button></l-button>
 </view>

@@ -4,6 +4,7 @@ const cssmin = require('gulp-clean-css')
 const rename = require('gulp-rename')
 const eslint = require('gulp-eslint')
 const clean = require('gulp-clean')
+const autoprefixer = require('gulp-autoprefixer')
 
 task('clean', () => {
   return src('../examples/dist/**/*', {read: false})
@@ -12,6 +13,10 @@ task('clean', () => {
 
 task('compile-css', () => {
   return src(['../src/**/*.less', '!../src/style/**'], {nodir: true})
+    .pipe(autoprefixer([
+      'iOS >= 8',
+      'Android >= 4.1'
+    ]))
     .pipe(less())
     .pipe(cssmin())
     .pipe(rename((path) => {
