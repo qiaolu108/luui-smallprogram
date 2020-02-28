@@ -1,4 +1,4 @@
-const path = require('path')
+const nodePath = require('path')
 const { series, parallel, src, dest, watch } = require('gulp');
 const chalk = require('chalk');
 const gulpif = require('gulp-if');
@@ -63,7 +63,7 @@ function copyImages () {
 
 // 修改文件后缀名
 function modifySuffix (str) {
-  let suffix = path.extname(str)
+  let suffix = nodePath.extname(str)
   if (suffix === '.less') {
     return str.replace('src', 'dist').replace('.less', '.wxss')
   } else {
@@ -71,31 +71,36 @@ function modifySuffix (str) {
   }
 }
 
-// 监听文件, 新增文件都可以监听到了，删除文件监听不到明天想办法
+// 监听文件,
 function auto () {
-  watch('src/**/*.less', compileCss).on('all', function(path, stats) {
-    // console.log(chalk.yellowBright(`删除less文件：${path}---${stats}`))
-    // let oPath = modifySuffix(path)
-    // console.log(oPath)
-    // del.sync(oPath)
-    series(compileCss)
+  const watcherLess = watch('src/**/*.less', compileCss)
+  const watcherJs = watch('src/**/*.js', copyJs)
+  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'], copyWxmlWxssJson)
+  const watchImages = watch('src/images/*.{png,jpg,jpeg,gif,ico}', copyImages)
+
+  watcherLess.on('add', function (path, stats) {})
+  watcherLess.on('unlink', function (path, stats) {
+    let oPath = modifySuffix(path)
+    del.sync(oPath)
   })
-  watch('src/**/*.js', copyJs).on('all', function (path, stats) {
-    // console.log(chalk.yellowBright(`删除js文件：${path}---${stats}`))
-    // let oPath = modifySuffix(path)
-    // console.log(oPath)
-    // del.sync(oPath)
-    series(copyJs)
+
+  watcherJs.on('add', function (path, stats) {})
+  watcherJs.on('unlink', function (path, stats) {
+    let oPath = modifySuffix(path)
+    del.sync(oPath)
   })
-  watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'], copyWxmlWxssJson).on('all', function (path, stats) {
-    // console.log(chalk.yellowBright(`删除文件：${path}---${stats}`))
-    // let oPath = modifySuffix(path)
-    // console.log(oPath)
-    // del.sync(oPath)
-    series(copyWxmlWxssJson)
+
+  watchOther.on('add', function (path, stats) {})
+  watchOther.on('unlink', function (path, stats) {
+    let suffix = nodePath.extname(path)
+    let oPath = modifySuffix(path)
+    del.sync(oPath)
   })
-  watch('src/images/*.{png,jpg,jpeg,gif,ico}', copyImages).on('all', function (path,stats) {
-    series(copyImages)
+
+  watchImages.on('add', function (path, stats) {})
+  watchImages.on('unlink', function (path, stats) {
+    let oPath = modifySuffix(path)
+    del.sync(oPath)
   })
 }
 
