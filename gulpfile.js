@@ -10,12 +10,22 @@ const postcss = require('gulp-postcss')
 const pxtorpx = require('postcss-px2rpx')
 const autoprefixer = require('gulp-autoprefixer')
 const eslint = require('gulp-eslint')
-const tinypngNokey = require('gulp-tinypng-nokey')
+const aliases = require('gulp-wechat-weapp-src-alisa');
 
 const ENV = process.env.NODE_ENV
 const isProd = ENV === 'production'
 const basePath = isProd ? 'dist' : 'examples/dist'
 console.log(chalk.greenBright(isProd ? '生产' : '开发'))
+
+// 路径拼接
+function _join(dirname) {
+  return nodePath.join(process.cwd(), dirname)
+}
+
+// 引用路径别名配置 @src/ === src/
+const aliasConfig = {
+  '@src': _join('src')
+}
 
 // 清空dist文件
 function clean (cb) {
@@ -27,6 +37,7 @@ function clean (cb) {
 // copy js文件到dist目录
 function copyJs () {
   return src('src/**/*.js')
+    .pipe(aliases(aliasConfig))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
@@ -37,6 +48,7 @@ function copyJs () {
 // 编译less并拷贝到dist目录
 function compileCss () {
   return src(['src/**/*.less', '!src/style/**'], {nodir: true})
+    .pipe(aliases(aliasConfig))
     .pipe(postcss([pxtorpx({multiplier: 1})]))
     .pipe(autoprefixer([
       'iOS >= 8',
@@ -51,13 +63,13 @@ function compileCss () {
 // 拷贝 wxml wxss json 到dist文件
 function copyWxmlWxssJson () {
   return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'])
+    .pipe(aliases(aliasConfig))  
     .pipe(dest(basePath))
 }
 
 // 拷贝 img 到dist 文件夹
 function copyImages () {
   return src('src/images/*.{png,jpg,jpeg,gif,ico}')
-    .pipe(tinypngNokey())
     .pipe(dest(`${basePath}/images`))
 }
 
@@ -102,6 +114,7 @@ function auto () {
     let oPath = modifySuffix(path)
     del.sync(oPath)
   })
+  console.log(chalk.greenBright('监听文件中...'))
 }
 
 if (process.env.NODE_ENV === 'production') {
