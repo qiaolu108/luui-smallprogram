@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "Button 按钮",
   "usingComponents": {
-    "lbutton": "../../dist/button/index"
+    "l-button": "../../dist/button/index"
   }
 }

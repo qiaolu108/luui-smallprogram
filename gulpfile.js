@@ -49,12 +49,12 @@ function copyJs () {
 function compileCss () {
   return src(['src/**/*.less', '!src/style/**'], {nodir: true})
     .pipe(aliases(aliasConfig))
+    .pipe(less())
     .pipe(postcss([pxtorpx({multiplier: 1})]))
     .pipe(autoprefixer([
       'iOS >= 8',
       'Android >= 4.1'
     ]))
-    .pipe(less())
     // .pipe(gulpif(isProd, cssmin())) // 组件库，开发生产都不压缩css
     .pipe(rename({extname: '.wxss'}))
     .pipe(dest(basePath))

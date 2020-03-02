@@ -1,3 +1,21 @@
 <view class="container">
-  <lbutton>按钮</lbutton>
+  <text>type="text"</text>
+  <l-button type="text">按钮</l-button>
+  <text>type="default"</text>
+  <l-button type="default">按钮</l-button>
+  <text>type="primary"</text>
+  <l-button type="primary">按钮</l-button>
+  <text>type="success"</text>
+  <l-button type="success">按钮</l-button>
+  <text>type="warning"</text>
+  <l-button type="warning">按钮</l-button>
+  <text>type="error"</text>
+  <l-button type="error">按钮</l-button>
+  
+  <text>size="small"</text>
+  <l-button type="default" size="small">按钮</l-button>
+  <text>size不传默认高度</text>
+  <l-button type="default">按钮</l-button>
+  <text>size="large"</text>
+  <l-button type="default" size="large">按钮</l-button>
 </view>
