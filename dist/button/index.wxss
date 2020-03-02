@@ -1,1 +1,1 @@
-.l-btn{background:#2d8cf0;font-size:30rpx;color:red;height:200rpx;display:-webkit-box;display:-webkit-flex;display:flex}
+.l-btn{background:#2d8cf0;font-size:30rpx;color:red;height:100px;display:-webkit-box;display:-webkit-flex;display:flex}
