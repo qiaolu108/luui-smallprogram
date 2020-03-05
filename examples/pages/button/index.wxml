@@ -18,4 +18,7 @@
   <l-button type="default">按钮</l-button>
   <text>size="large"</text>
   <l-button type="default" size="large">按钮</l-button>
+
+  <text>loading="true"</text>
+  <l-button loading="{{true}}">加载中</l-button>
 </view>
