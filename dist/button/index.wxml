@@ -1,4 +1,5 @@
 <button
-  class="l-btn">
-  按钮1
+  class="l-class l-btn {{'l-btn-' + type}} {{'l-btn-' + size}}"
+  >
+  <view class="l-btn-loading-inner" wx:if="{{loading}}"></view><slot></slot>
 </button>
