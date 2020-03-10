@@ -23,8 +23,46 @@ Component({
       type: Boolean,
       value: false
     },
-    openType: String
+    openType: String,
+    appParameter: String,
+    hoverStopPropagation: Boolean,
+    hoverStartTime: {
+      type: Number,
+      value: 20
+    },
+    hoverStayTime: {
+      type: Number,
+      value: 70
+    },
+    lang: {
+      type: String,
+      value: 'en'
+    },
+    sessionFrom: {
+      type: String,
+      value: ''
+    },
+    sendMessageTitle: String,
+    sendMessagePath: String,
+    sendMessageImg: String,
+    showMessageCard: Boolean
   },
   methods: {
+    handleTap () {
+      if (this.data.disabled) return false
+      this.triggerEvent('click')
+    },
+    bindgetuserinfo ({ detail = {} } = {}) {
+      this.triggerEvent('getuserinfo', detail)
+    },
+    bindcontact ({ detail = {} } = {}) {
+      this.triggerEvent('contact', detail)
+    },
+    bindgetphonenumber ({ detail = {} } = {}) {
+      this.triggerEvent('getphonenumber', detail)
+    },
+    binderror ({ detail = {} } = {}) {
+      this.triggerEvent('error', detail)
+    }
   }
 })
