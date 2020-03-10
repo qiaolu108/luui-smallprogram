@@ -1,1 +1,1 @@
-<icon class="{{ type ? '' : 'iconfont ' + custom }}" type="{{ type }}" size="{{ size }}" style="{{ color ? 'color: ' + color : '' }}"/>
+<icon class="{{ type ? '' : 'iconfont ' + custom }}" size="{{ type ? size : '' }}"  type="{{ type }}" style="font-size: {{size}}px; {{ color ? 'color: ' + color : '' }}"/>
