@@ -1,1 +1,1 @@
-<text class="iconfont icon-gonggao"></text>
+<icon class="{{ type ? '' : 'iconfont ' + custom }}" type="{{ type }}" size="{{ size }}" style="{{ color ? 'color: ' + color : '' }}"/>
