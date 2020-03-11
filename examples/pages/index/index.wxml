@@ -17,5 +17,6 @@
   <view class="list">
     <text class="items" bindtap="toButtonPage">button组件</text>
     <text class="items" bindtap="toButtonIcon">Icon组件</text>
+    <text class="items" bindtap="toNavBar">navbar自定义导航栏组件</text>
   </view>
 </view>
