@@ -9,6 +9,6 @@
   </view>
   <view>
     <text>自定义 custom</text>
-    <l-icon custom="iconicon-back-l" size="30" color="red"></l-icon>
+    <l-icon custom="paizhao" size="30" color="red"></l-icon>
   </view>
 </view>

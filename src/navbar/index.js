@@ -26,6 +26,11 @@ Component({
       type: Boolean,
       value: true
     },
+    // 是否显示取消按钮
+    showCancel: {
+      type: Boolean,
+      value: false
+    },
     // 控制是否有顶部padding,默认是有
     hastop: {
       type: Boolean,
