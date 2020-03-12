@@ -71,7 +71,7 @@
   opacity: 0.6;
 }
 .l-btn-disabled {
-  color: #808695;
+  color: #ffffff;
   background-color: #C4C4C4 !important;
 }
 .l-btn-hover {
