@@ -1,3 +1,4 @@
+@import '../style/theme.less';
 .navbar-wrap {
   position: fixed;
   top: 0;
@@ -14,16 +15,42 @@
       line-height: 44px;
       font-weight: 500;
     }
+    .search-input {
+      width: 235px;
+      height: 30px;
+      border-radius: 100px;
+      background-color: #EDF0F4;
+      margin: 0 0 0 35px;
+      transform: translateY(6px);
+      position: relative;
+      display: flex;
+      .prefix-icon {
+        color: #808695;
+        margin: 9px 9px 0 12px;
+      }
+      .input {
+        font-size: 12px;
+        height: 30px;
+        color: @font-color3;
+        width: 190px;
+      }
+    }
   }
   .back {
     position: absolute;
     left: 0;
     top: 0;
-    width: 88px;
+    width: 60px;
     height: 44px;
     .back-btn {
       margin-left: 10px;
       margin-top: 14px;
+    }
+    .cancel-btn {
+      font-size: 16px;
+      color: #515A6E;
+      padding-left: 15px;
+      line-height: 44px;
     }
   }
   .bgimg {

@@ -9,7 +9,7 @@ Component({
     // 导航栏背景色， 默认黑色
     bgColor: {
       type: String,
-      value: 'rgba(0,0,0,0)'
+      value: '#ffffff'
     },
     // 导航栏标题
     title: {
@@ -19,7 +19,7 @@ Component({
     // 导航栏标题颜色，和返回按钮颜色, 默认黑色
     color: {
       type: String,
-      value: 'rgba(0,0,0,0)'
+      value: '#000000'
     },
     // 是否显示返回按钮, 默认显示
     showBack: {
@@ -40,6 +40,11 @@ Component({
     bgsrc: {
       type: String,
       value: ''
+    },
+    // 显示顶部搜索框
+    showSearch: {
+      type: Boolean,
+      value: false
     }
   },
   data: {
@@ -54,10 +59,19 @@ Component({
     })
     // 如果背景色不是白色 要设置状态栏文字颜色为白色
     const { bgColor } = this.properties
-    if (bgColor !== '#fff' || bgColor !== '#ffffff' || bgColor !== 'white') {
+    if (bgColor !== '#fff' && bgColor !== '#ffffff' && bgColor !== 'white') {
       wx.setNavigationBarColor({
         frontColor: '#ffffff',
-        backgroundColor: '#ff0000',
+        backgroundColor: 'red',
+        animation: {
+          duration: 400,
+          timingFunc: 'easeIn'
+        }
+      })
+    } else {
+      wx.setNavigationBarColor({
+        frontColor: '#000000',
+        backgroundColor: 'red',
         animation: {
           duration: 400,
           timingFunc: 'easeIn'
@@ -70,6 +84,18 @@ Component({
       wx.navigateBack({
         delta: 1
       })
+    },
+    // 监听搜索框输入文字
+    handleInput ({ detail = {} } = {}) {
+      this.triggerEvent('onInput', detail)
+    },
+    // 搜索框失去焦点
+    handleBlur ({ detail = {} } = {}) {
+      this.triggerEvent('onBlur', detail)
+    },
+    // 搜索框获取焦点
+    handleFocus ({ detail = {} } = {}) {
+      this.triggerEvent('onFocus', detail)
     }
   }
 })

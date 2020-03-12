@@ -4,12 +4,12 @@
   <view class="content">
     <view wx:if="{{showBack}}" class="back" bindtap="handleBack">
       <text wx:if="{{showCancel}}" class="cancel-btn">取消</text>
-      <l-icon custom="topback" size="16" style="color: {{color}}"></l-icon>
+      <l-icon wx:else  l-class="back-btn" custom="topback" size="16" style="color: {{color}}"></l-icon>
     </view>
-    <view class="title" style="color: {{color}};">{{title}}</view>
-    <view class="search-input">
-      <l-icon custom="topback" size="16" style="color: {{color}}"></l-icon>
-      <input type="text" placeholder="去查商标"/>
+    <view wx:if="{{title}}" class="title" style="color: {{color}};">{{title}}</view>
+    <view wx:if="{{showSearch}}" class="search-input">
+      <l-icon l-class="prefix-icon" custom="sousuo" size="12"></l-icon>
+      <input class="input" type="text" bindinput="handleInput" bindblur="handleBlur" bindfocus="handleFocus" placeholder="去查商标"/>
     </view>
   </view>
 </view>
