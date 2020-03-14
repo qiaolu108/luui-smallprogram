@@ -62,9 +62,9 @@ function compileCss () {
     .pipe(dest(basePath))
 }
 
-// 拷贝 wxml wxss json 到dist文件
+// 拷贝 wxml wxss json wxs 到dist文件
 function copyWxmlWxssJson () {
-  return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'])
+  return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json', 'src/**/*.wxs'])
     .pipe(aliases(aliasConfig))  
     .pipe(dest(basePath))
 }
@@ -89,7 +89,7 @@ function modifySuffix (str) {
 function auto () {
   const watcherLess = watch(lessPaths, compileCss)
   const watcherJs = watch('src/**/*.js', copyJs)
-  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'], copyWxmlWxssJson)
+  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json', 'src/**/*.wxs'], copyWxmlWxssJson)
   const watchImages = watch('src/images/*.{png,jpg,jpeg,gif,ico}', copyImages)
 
   watcherLess.on('add', function (path, stats) {})

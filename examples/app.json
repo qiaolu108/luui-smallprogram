@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/button/index",
     "pages/navbar/index",
+    "pages/slideview/index",
     "pages/icon/index"
   ],
   "window": {
