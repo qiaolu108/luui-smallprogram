@@ -1,1 +1,1 @@
-<icon class="l-class {{ type ? '' : 'iconfont ' + custom }}" size="{{ type ? size : '' }}"  type="{{ type }}" style="font-size: {{size}}px; {{ color ? 'color: ' + color : '' }}"/>
+<view class="l-class {{ 'iconfont ' + custom }}" size="{{ size }}" style="font-size: {{size}}px; {{ color ? 'color: ' + color : '' }}"></view>

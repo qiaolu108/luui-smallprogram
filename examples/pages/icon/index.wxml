@@ -1,14 +1,6 @@
 <view class="container">
   <view>
-    <text>原生小程序 icon 使用 type="success"</text>
-    <l-icon type="success"></l-icon>
-  </view>
-  <view>
-    <text>原生小程序 icon 使用 size</text>
-    <l-icon type="success_no_circle" size="40"></l-icon>
-  </view>
-  <view>
-    <text>自定义 custom</text>
+    <text>自定义 custom size:30 color: red</text>
     <l-icon custom="paizhao" size="30" color="red"></l-icon>
   </view>
 </view>
