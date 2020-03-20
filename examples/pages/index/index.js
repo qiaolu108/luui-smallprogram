@@ -18,13 +18,19 @@ Page({
   // 跳转到button 组件页面
   toButtonPage () {
     wx.navigateTo({
-      url: '../button/index'
+      url: '/pages/button/button'
     })
   },
   // 跳转到icon 
   toButtonIcon () {
     wx.navigateTo({
-      url: '../icon/index'
+      url: '/pages/icon/icon'
+    })
+  },
+  // 跳转到navBar
+  toNavBar () {
+    wx.navigateTo({
+      url: '/pages/navbar/navbar'
     })
   },
   onLoad: function () {

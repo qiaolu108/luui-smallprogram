@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "slideview",
+  "usingComponents": {
+    "l-slideview": "../../dist/slideview/slideview"
+  }
+}

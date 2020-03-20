@@ -1,6 +1,14 @@
 // app.js
 App({
   onLaunch: function () {
+    // 获取状态栏的高度
+    wx.getSystemInfo({
+      success: (res) => {
+        // 44是导航栏除去状态栏的高度，单位px。
+        this.globalData.statusBarHeight = res.statusBarHeight
+        this.globalData.navBarHeight = 44 + res.statusBarHeight
+      }
+    })
     // 展示本地存储能力
     let logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -33,6 +41,9 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    // 自定义导航栏要用到的
+    statusBarHeight: 0,
+    navBarHeight: 0
   }
 })

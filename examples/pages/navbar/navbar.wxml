@@ -1,0 +1,20 @@
+<view>
+  <!-- <navbar bgColor="black" title="你好" color="#fff" bgsrc="../images/cccc.jpg"></navbar> -->
+  
+  <!-- <navbar title="你好" color="#000000"  hastop="{{false}}"></navbar> -->
+  
+  <!-- <navbar showCancel title="你好" color="#ffffff" hastop="{{false}}" bgColor="transparent"></navbar> -->
+  <!-- <image class="pagebg" src="../../dist/images/cccc.jpg" mode="aspectFill"></image> -->
+  <!-- <view>page content</view> -->
+
+  <!-- <navbar showCancel title="你好" color="#000000" ></navbar>
+  <view>页面内容</view> -->
+
+  <!-- <navbar showSearch bindonInput="handleOnInput"></navbar> -->
+
+  <navbar title="测试的" customIcon="{{true}}">
+    <view slot="backIcon">
+      <l-icon custom="enjoy"></l-icon>
+    </view>
+  </navbar>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navbar": "../../dist/navbar/navbar",
+    "l-icon": "../../dist/icon/icon"
+  }
+}

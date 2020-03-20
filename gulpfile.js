@@ -17,6 +17,8 @@ const isProd = ENV === 'production'
 const basePath = isProd ? 'dist' : 'examples/dist'
 console.log(chalk.greenBright(isProd ? '生产' : '开发'))
 
+const lessPaths = ['src/**/*.less', '!src/style/**/**']
+
 // 路径拼接
 function _join(dirname) {
   return nodePath.join(process.cwd(), dirname)
@@ -47,7 +49,7 @@ function copyJs () {
 // multiplier: 1 不管用，先放着吧
 // 编译less并拷贝到dist目录
 function compileCss () {
-  return src(['src/**/*.less', '!src/style/**'], {nodir: true})
+  return src(lessPaths, {nodir: true})
     .pipe(aliases(aliasConfig))
     .pipe(less())
     .pipe(postcss([pxtorpx({multiplier: 1})]))
@@ -60,9 +62,9 @@ function compileCss () {
     .pipe(dest(basePath))
 }
 
-// 拷贝 wxml wxss json 到dist文件
+// 拷贝 wxml wxss json wxs 到dist文件
 function copyWxmlWxssJson () {
-  return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'])
+  return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json', 'src/**/*.wxs'])
     .pipe(aliases(aliasConfig))  
     .pipe(dest(basePath))
 }
@@ -85,9 +87,9 @@ function modifySuffix (str) {
 
 // 监听文件,
 function auto () {
-  const watcherLess = watch('src/**/*.less', compileCss)
+  const watcherLess = watch(lessPaths, compileCss)
   const watcherJs = watch('src/**/*.js', copyJs)
-  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json'], copyWxmlWxssJson)
+  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json', 'src/**/*.wxs'], copyWxmlWxssJson)
   const watchImages = watch('src/images/*.{png,jpg,jpeg,gif,ico}', copyImages)
 
   watcherLess.on('add', function (path, stats) {})

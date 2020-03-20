@@ -1,0 +1,6 @@
+<view class="container">
+  <view>
+    <text>自定义 custom size:30 color: red</text>
+    <l-icon custom="paizhao" size="30" color="red"></l-icon>
+  </view>
+</view>

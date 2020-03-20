@@ -1,0 +1,4 @@
+.pagebg {
+  position: fixed;
+  width: 100%;
+}

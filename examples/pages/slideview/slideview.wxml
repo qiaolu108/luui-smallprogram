@@ -1,0 +1,7 @@
+<view>
+  <view class="weui-cells">
+    <l-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+      <view>左滑可以删除</view>
+    </l-slideview>
+  </view>
+</view>
