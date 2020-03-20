@@ -2,10 +2,10 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/button/index",
-    "pages/navbar/index",
-    "pages/slideview/index",
-    "pages/icon/index"
+    "pages/button/button",
+    "pages/navbar/navbar",
+    "pages/slideview/slideview",
+    "pages/icon/icon"
   ],
   "window": {
     "backgroundTextStyle": "light",
