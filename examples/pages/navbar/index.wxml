@@ -10,5 +10,11 @@
   <!-- <navbar showCancel title="你好" color="#000000" ></navbar>
   <view>页面内容</view> -->
 
-  <navbar showSearch bindonInput="handleOnInput"></navbar>
+  <!-- <navbar showSearch bindonInput="handleOnInput"></navbar> -->
+
+  <navbar title="测试的" customIcon="{{true}}">
+    <view slot="backIcon">
+      <l-icon custom="enjoy"></l-icon>
+    </view>
+  </navbar>
 </view>

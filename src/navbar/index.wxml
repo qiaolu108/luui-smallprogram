@@ -2,7 +2,10 @@
   <image class="bgimg" wx:if="{{bgsrc}}" src="{{bgsrc}}" mode="aspectFill"></image>
   <view style="height: {{statusBarHeight}}px;"></view>
   <view class="content">
-    <view wx:if="{{showBack}}" class="back" bindtap="handleBack">
+    <view wx:if="{{customIcon}}" bindtap="handleBack">
+      <slot name="backIcon"></slot>
+    </view>
+    <view wx:if="{{showBack && !customIcon}}" class="back" bindtap="handleBack">
       <text wx:if="{{showCancel}}" class="cancel-btn">取消</text>
       <l-icon wx:else  l-class="back-btn" custom="topback" size="16" style="color: {{color}}"></l-icon>
     </view>

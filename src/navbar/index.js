@@ -45,6 +45,11 @@ Component({
     showSearch: {
       type: Boolean,
       value: false
+    },
+    // 自定义返回按钮
+    customIcon: {
+      type: Boolean,
+      value: false
     }
   },
   data: {
