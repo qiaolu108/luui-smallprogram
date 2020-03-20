@@ -2,7 +2,7 @@
   <image class="bgimg" wx:if="{{bgsrc}}" src="{{bgsrc}}" mode="aspectFill"></image>
   <view style="height: {{statusBarHeight}}px;"></view>
   <view class="content">
-    <view wx:if="{{customIcon}}" bindtap="handleBack">
+    <view wx:if="{{customIcon}}" class="custom-back" bindtap="handleBack">
       <slot name="backIcon"></slot>
     </view>
     <view wx:if="{{showBack && !customIcon}}" class="back" bindtap="handleBack">
