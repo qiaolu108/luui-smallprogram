@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "icon",
   "usingComponents": {
-    "l-icon": "../../dist/icon/icon"
+    "l-icon": "../../dist/icon/index"
   }
 }
