@@ -3,7 +3,8 @@ const app = getApp()
 Component({
   externalClasses: ['l-class'],
   options: {
-    multipleSlots: true
+    multipleSlots: true,
+    addGlobalClass: true
   },
   properties: {
     // 导航栏背景色， 默认黑色
