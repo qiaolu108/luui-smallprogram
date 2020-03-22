@@ -19,7 +19,7 @@ const PluginError = require('plugin-error');
 
 const ENV = process.env.NODE_ENV
 const isProd = ENV === 'production'
-const basePath = isProd ? 'dist/**/*' : 'examples/dist/**/*'
+const basePath = isProd ? 'dist' : 'examples/dist'
 console.log(chalk.greenBright(isProd ? '生产' : '开发'))
 
 const lessPaths = ['src/**/*.less', '!src/style/**/**']
