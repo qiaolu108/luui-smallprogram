@@ -100,7 +100,7 @@ function copyWxmlWxss () {
 function copyJson () {
   return src('src/**/*.json')
   .pipe(aliasesJson())
-  .pipe(dest('dist'))
+  .pipe(dest(basePath))
 }
 
 // 拷贝 img 到dist 文件夹

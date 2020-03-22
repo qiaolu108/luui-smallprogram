@@ -17,7 +17,7 @@
 1. 添加需要的组件。在页面的 json 中配置（路径根据自己项目位置配置）：
 ```json
 "usingComponents": {
-    "l-button": "../../dist/button/index"
+    "l-button": "../../dist/button/button"
 }
 ```
 2. 在 wxml 中使用组件：
