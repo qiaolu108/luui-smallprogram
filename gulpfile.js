@@ -11,10 +11,15 @@ const pxtorpx = require('postcss-px2rpx')
 const autoprefixer = require('gulp-autoprefixer')
 const eslint = require('gulp-eslint')
 const aliases = require('gulp-wechat-weapp-src-alisa');
+// 用于处理node的stream
+const through = require('through2');
+// 错误提示
+const PluginError = require('plugin-error');
+
 
 const ENV = process.env.NODE_ENV
 const isProd = ENV === 'production'
-const basePath = isProd ? 'dist' : 'examples/dist'
+const basePath = isProd ? 'dist/**/*' : 'examples/dist/**/*'
 console.log(chalk.greenBright(isProd ? '生产' : '开发'))
 
 const lessPaths = ['src/**/*.less', '!src/style/**/**']
@@ -29,12 +34,34 @@ const aliasConfig = {
   '@src': _join('src')
 }
 
+// json 文件的 alias 替换
+function aliasesJson () {
+  return through.obj((file, enc, cb) => {
+    if (file.isNull()) {
+      return cb(null, file);
+    }
+    if (file.isStream()) {
+        return cb(new PluginError('gulp-path-alias', 'stream not supported'));
+    }
+    let content = file.contents.toString('utf8');
+    let fromPath = nodePath.resolve(file.path)
+    content = content.replace(/@src(.*?)+/g, ($1) => {
+      let toPath = nodePath.join(process.cwd(), '/src', $1.split('@src')[1])
+      let relative = nodePath.relative(fromPath, toPath)
+      return $1.replace(/@src(.*?)+/g, relative)
+    })
+    file.contents = Buffer.from(content);
+    cb(null, file);
+  })
+}
+
 // 清空dist文件
 function clean (cb) {
-  del.promise(basePath, {force: true}).then(function (files, err) {
-    console.log(chalk.green(`清理${files}完成`));
+  del([basePath], function (err, deleted) {
+    if (err) throw err
     cb()
-  });
+    console.log(chalk.green(`清理/dist完成`));
+  })
 }
 // copy js文件到dist目录
 function copyJs () {
@@ -62,11 +89,18 @@ function compileCss () {
     .pipe(dest(basePath))
 }
 
-// 拷贝 wxml wxss json wxs 到dist文件
-function copyWxmlWxssJson () {
-  return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json', 'src/**/*.wxs'])
+// 拷贝 wxml wxss wxs 到dist文件
+function copyWxmlWxss () {
+  return src(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.wxs'])
     .pipe(aliases(aliasConfig))  
     .pipe(dest(basePath))
+}
+
+// 拷贝 json 文件到 dist 文件夹
+function copyJson () {
+  return src('src/**/*.json')
+  .pipe(aliasesJson())
+  .pipe(dest('dist'))
 }
 
 // 拷贝 img 到dist 文件夹
@@ -89,7 +123,8 @@ function modifySuffix (str) {
 function auto () {
   const watcherLess = watch(lessPaths, compileCss)
   const watcherJs = watch('src/**/*.js', copyJs)
-  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.json', 'src/**/*.wxs'], copyWxmlWxssJson)
+  const watchOther = watch(['src/**/*.wxml', 'src/**/*.wxss', 'src/**/*.wxs'], copyWxmlWxss)
+  const watchJson = watch('src/**/*.json', copyJson)
   const watchImages = watch('src/images/*.{png,jpg,jpeg,gif,ico}', copyImages)
 
   watcherLess.on('add', function (path, stats) {})
@@ -111,6 +146,12 @@ function auto () {
     del.sync(oPath)
   })
 
+  watchJson.on('add', function (path, stats) {})
+  watchJson.on('unlink', function (path, stats) {
+    let oPath = modifySuffix(path)
+    del.sync(oPath)
+  })
+
   watchImages.on('add', function (path, stats) {})
   watchImages.on('unlink', function (path, stats) {
     let oPath = modifySuffix(path)
@@ -120,7 +161,7 @@ function auto () {
 }
 
 if (process.env.NODE_ENV === 'production') {
-  exports.build = series(clean, parallel(copyJs, compileCss, copyWxmlWxssJson, copyImages))
+  exports.build = series(clean, parallel(copyJs, compileCss, copyWxmlWxss, copyJson, copyImages))
 } else {
-  exports.default = series(clean, parallel(copyJs, compileCss, copyWxmlWxssJson, copyImages), auto)
+  exports.default = series(clean, parallel(copyJs, compileCss, copyWxmlWxss, copyJson, copyImages), auto)
 }
